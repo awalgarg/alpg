@@ -1,0 +1,168 @@
+html, body {
+	margin: 0;
+		padding: 0;
+}
+body {
+	min-height: 100vh;
+	background-color: #333;
+}
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+#wrapper {
+	display: flex;
+	min-height: 100vh;
+}
+#load-indicator {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	height: 3px;
+	background-color: #008aff;
+	z-index: 10;
+	transition: all 0.5s ease;
+}
+#editors {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+#editors > .ace_editor {
+	flex-grow: 1;
+}
+#editors > .ace_editor:first-of-type {
+	border-bottom: 1px solid #fafafa;
+}
+#editors > .ace_editor:before {
+	position: absolute;
+	right: 0.5rem;
+	opacity: 0.5;
+	z-index: 10;
+}
+#algo-editor:before {
+	content: 'Algorithm Definition';
+}
+#css-editor:before{
+	content: 'Additional CSS';
+}
+#control {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+	#editors {
+		display: none;
+	}
+	#control {
+		width: auto;
+	}
+}
+
+#toolbar, #playback-controls {
+	display: flex;
+}
+#toolbar fieldset {
+	border: 0px;
+	outline: 0px;
+	padding: 0px;
+}
+#toolbar input, #toolbar button, #playback-controls button, #playback-controls input {
+	border-radius: 0px;
+	outline: none;
+	border: 1px solid rgba(95, 95, 95, 0.5);
+	color: white;
+	background-color: rgba(135, 135, 135, 0.10);
+	font-family: monospace;
+	padding: 0.2rem;
+	margin: 0px;
+}
+#playback-controls {
+	justify-content: center;
+}
+#view {
+	flex-grow: 1;
+	background-color: #999;
+	padding: 1rem;
+}
+#view.unloaded {
+	font-family: monospace;
+	text-align: center;
+}
+#view.unloaded:before {
+	content: "Algo view is rendered here. This text here with a dull grey background means no algo is loaded. Select one, or write your own. Playback controls are disabled while no algo is loaded. Happy playing with algorithms!";
+}
+#view.loaded {
+	background-color: white;
+}
+#algo-active-name {
+	font-family: monospace;
+	color: white;
+}
+#logs {
+	min-height: 20%;
+	max-height: 100px;
+	background-color: #fff;
+	font-family: monospace;
+	padding: 0.1rem;
+	white-space: pre;
+	overflow: auto;
+}
+#logs pre {
+	margin: 0;
+}
+#logs > pre.app-log-container {
+	font-size: 120%;
+	display: flex;
+}
+#logs > pre.app-log-container.log {
+	background-color: #fff;
+}
+#logs > pre.app-log-container.error {
+	background-color: #f58eae;
+}
+#logs > pre.app-log-container.warning {
+	background-color: #ffdb99;
+}
+#logs > pre.app-log-container.debug {
+	background-color: #e6e6e6;
+}
+#logs > pre.app-log-container.info {
+	background-color: #cacaff;
+}
+#logs pre.log-timestamp {
+	display: inline;
+}
+#logs pre.app-log-container pre.log-timestamp:after {
+	content: " ";
+	background-color: currentColor;
+	margin: 0 0.25rem;
+	display: inline-block;
+	color: #777;
+	max-width: 0.3rem;
+}
+#logs pre.app-log-container.warning pre.log-timestamp:after {
+	color: orange;
+}
+#logs pre.app-log-container.error pre.log-timestamp:after {
+	color: red;
+}
+#logs pre.app-log-container.info pre.log-timestamp:after {
+	color: blue;
+}
+#logs pre.app-log-container.debug pre.log-timestamp:after {
+	color: grey;
+}
+#logs pre.app-log-container.log pre.log-timestamp:after {
+	color: green;
+}
+#logs pre.app-log-container pre.app-log {
+	display: inline;
+}
+.branding-link {
+	color: white;
+	font-family: monospace;
+	padding: 0.2rem;
+}
+

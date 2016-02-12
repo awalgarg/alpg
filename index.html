@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>alpg | algorithm playground with time travelling</title>
+		<link rel="stylesheet" type="text/css" href="./src/app.css">
+		<link rel="stylesheet" type="text/css" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.min.css">
+<style id="view-scoped-css">
+/*
+   I contain CSS which is scoped to #view pragmatically!
+*/
+</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="load-indicator"></div>
+			<div id="editors">
+				<div id="algo-editor"></div>
+				<div id="css-editor"></div>
+			</div>
+			<div id="control">
+				<div id="toolbar">
+					<a href="https://github.com/awalGarg/alpg" class="branding-link">ALPG</a>
+					<fieldset id="toolkit">
+						<button id="action-run">Run</button><!--
+						--><button id="action-save">Save</button><!--
+						--><button id="action-swap-renderer">Hot Swap Render</button><!--
+						--><input readonly id="algo-permalink" placeholder="permalink to algo here"><!--
+						--><label id="algo-active-name"></label>
+					</fieldset>
+				</div>
+				<div id="view" class="unloaded"></div>
+				<div id="playback-controls">
+					<button id="playback-previous"><i class="fa fa-chevron-left"></i> Previous</button><!--
+					--><button id="playback-rewind"><i class="fa fa-rotate-left"></i> Rewind</button><!--
+					--><button id="playback-pause"><i class="fa fa-pause"></i> Pause</button><!--
+					--><button id="playback-play"><i class="fa fa-play"></i> Play</button><!--
+					--><button id="playback-next"><i class="fa fa-chevron-right"></i> Next</button>
+					<input id="playback-speed" placeholder="playback speed in ms">
+				</div>
+				<div id="logs"></div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js"></script>
+		<script src="./dest.js"></script>
+	</body>
+</html>
