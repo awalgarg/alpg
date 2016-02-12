@@ -1,7 +1,7 @@
 # alpg
 
 alpg is an in-browser algorithm playground to visualize algorithms. it features a time-travelling inspector and hot-swapping view mechanism.
-See an example with bubble sort at http://awal.js.org/alpg?19e6114a4dc265794d30.
+See an example with bubble sort at http://awal.js.org/alpg/?gist=19e6114a4dc265794d30.
 
 ## how
 the algorithm it intakes is basically a script implementing atleast two functions: `algo` and `render`.
@@ -17,7 +17,7 @@ I am not very good with algorithms, so I don't have many great examples right no
 [virtual-dom-hyperscript]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#virtual-hyperscript
 
 ## More documentation?
-If you are a JS developer, the [example](http://awal.js.org/alpg?19e6114a4dc265794d30) above shall get you started very easily.
+If you are a JS developer, the [example](http://awal.js.org/alpg/?gist=19e6114a4dc265794d30) above shall get you started very easily.
 
 Meanwhile, I am working on "real" docs as well!
 
