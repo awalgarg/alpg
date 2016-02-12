@@ -1,0 +1,2 @@
+browserify -t [ babelify --presets [ es2015 ] ] src/main.js | uglifyjs -o dest.js
+
