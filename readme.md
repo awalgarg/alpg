@@ -19,6 +19,10 @@ If you are a JS developer familiar with function programming (and optionally vir
 - media player style playback of rendered states
 - custom logger (use the `logger` object in your algorithm code)
 
+## Screenshots
+
+![enter image description here](http://i.imgur.com/3kH3b1p.png "I know you want a gif. but.. I use linux. 'nuf said")
+
 ## why not provide awesome feature X as well?
 Mostly because of UX issues. Providing lots of things at once often spoils everything.
 
