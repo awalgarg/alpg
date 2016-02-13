@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>alpg | algorithm playground with time travelling</title>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<link rel="stylesheet" type="text/css" href="./src/app.css">
 		<link rel="stylesheet" type="text/css" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.min.css">
 <style id="view-scoped-css">
@@ -18,26 +19,24 @@
 				<div id="css-editor"></div>
 			</div>
 			<div id="control">
-				<div id="toolbar">
-					<a href="https://github.com/awalGarg/alpg" class="branding-link">ALPG</a>
-					<fieldset id="toolkit">
-						<button id="action-run">Run</button><!--
-						--><button id="action-save">Save</button><!--
-						--><button id="action-swap-renderer">Hot Swap Render</button><!--
-						--><input readonly id="algo-permalink" placeholder="permalink to algo here"><!--
-						--><label id="algo-active-name"></label>
-					</fieldset>
+				<div id="toolbar" class="pure-form"><!--
+					--><a href="https://github.com/awalGarg/alpg" class="pure-button alpg-branding" target="_blank"><i class="fa fa-github-square"></i> alpg</a><!--
+					--><button class="pure-button" id="action-run"><i class="fa fa-code"></i> Run</button><!--
+					--><button class="pure-button" id="action-save"><i class="fa fa-pencil"></i> Save</button><!--
+					--><button class="pure-button" id="action-swap-renderer"><i class="fa fa-flash"></i> Hot Swap Render</button><!--
+					--><input type="text" readonly id="algo-permalink" placeholder="permalink to algo here">
 				</div>
 				<div id="view" class="unloaded"></div>
-				<div id="playback-controls">
-					<button id="playback-previous"><i class="fa fa-chevron-left"></i> Previous</button><!--
-					--><button id="playback-rewind"><i class="fa fa-rotate-left"></i> Rewind</button><!--
-					--><button id="playback-pause"><i class="fa fa-pause"></i> Pause</button><!--
-					--><button id="playback-play"><i class="fa fa-play"></i> Play</button><!--
-					--><button id="playback-next"><i class="fa fa-chevron-right"></i> Next</button>
-					<input id="playback-speed" placeholder="playback speed in ms">
+				<input type="range" min="0" step="1" value="0" max="10" id="playback-slider">
+				<div id="playback-controls" class="pure-form"><!--
+					--><button class="button-secondary pure-button" id="playback-previous"><i class="fa fa-chevron-left"></i> Previous</button><!--
+					--><button class="button-secondary pure-button" id="playback-rewind"><i class="fa fa-rotate-left"></i> Rewind</button><!--
+					--><button class="button-secondary pure-button" id="playback-pause"><i class="fa fa-pause"></i> Pause</button><!--
+					--><button class="button-secondary pure-button" id="playback-play"><i class="fa fa-play"></i> Play</button><!--
+					--><button class="button-secondary pure-button" id="playback-next"><i class="fa fa-chevron-right"></i> Next</button>
+					<input id="playback-speed" type="text" placeholder="playback speed in ms">
 				</div>
-				<div id="logs"></div>
+				<div id="logs" style="display:none"></div>
 			</div>
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js"></script>

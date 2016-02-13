@@ -36,7 +36,7 @@ function compileAlgoFromEditor(algoEditor, cssEditor) {
 /** DANGER! DOM HANDLING FUNCTIONS AHEAD! YOU HAVE BEEN WARNED! **/
 
 function editorSetup() {
-	const theme = 'ace/theme/tomorrow_night_eighties';
+	const theme = 'ace/theme/tomorrow';
 	const editors = {
 		algo: ['algo-editor', theme, 'javascript'],
 		css: ['css-editor', theme, 'css']
@@ -72,14 +72,14 @@ function domSnapshot() {
 				btnRunAlgo: elById('action-run'),
 				btnSave: elById('action-save'),
 				btnSwapRender: elById('action-swap-renderer'),
-				permalink: elById('algo-permalink'),
-				activeName: elById('algo-active-name')
+				permalink: elById('algo-permalink')
 			}
 		},
 		view: elById('view'),
 		viewCss: elById('view-scoped-css'),
 		playback: {
 			root: elById('playback-controls'),
+			slider: elById('playback-slider'),
 			previous: elById('playback-previous'),
 			rewind: elById('playback-rewind'),
 			pause: elById('playback-pause'),
@@ -181,8 +181,8 @@ function loadFromGistBasedOnLocation(editors, setEditState, logger) {
 		loadIndicator.animate(0, 99, 10);
 		loadAlgoFromGist(match[1])
 			.then(function (resp) {
-				editors.algo.setValue(resp.files['algo.js'].content);
-				editors.css.setValue(resp.files['css.css'].content);
+				editors.algo.setValue(resp.files['algo.js'].content, -1);
+				editors.css.setValue(resp.files['css.css'].content, -1);
 				logger.info('loaded algo based on url!');
 				loadIndicator.clear();
 				setEditState(true);
@@ -272,7 +272,6 @@ function init() {
 			unloadAlgorithm();
 			currentControl = player(algo, dom.view);
 			currentControl.run();
-			dom.control.toolbar.activeName.textContent = `Currently Viewing: ${algo.algoName || 'untitled'}`;
 			dom.view.classList.remove('unloaded');
 			dom.view.classList.add('loaded');
 		}
@@ -285,7 +284,6 @@ function init() {
 			}
 
 			currentControl = undefined;
-			dom.control.toolbar.activeName.textContent = '';
 			dom.view.classList.remove('loaded');
 			dom.view.classList.add('unloaded');
 		}

@@ -1,17 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300);
 html, body {
 	margin: 0;
-		padding: 0;
+	padding: 0;
 }
 body {
 	min-height: 100vh;
-	background-color: #333;
+	background-color: #fafafa;
+	font: normal 18px 'Source Sans Pro', Arial;
 }
 *, *:after, *:before {
 	box-sizing: border-box;
 }
 #wrapper {
 	display: flex;
-	min-height: 100vh;
+	height: 100vh;
 }
 #load-indicator {
 	position: fixed;
@@ -26,12 +28,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
+	border-right: 1px solid #ccc;
 }
 #editors > .ace_editor {
 	flex-grow: 1;
 }
 #editors > .ace_editor:first-of-type {
-	border-bottom: 1px solid #fafafa;
+	border-bottom: 1px solid #ccc;
 }
 #editors > .ace_editor:before {
 	position: absolute;
@@ -59,31 +62,53 @@ body {
 		width: auto;
 	}
 }
-
+#playback-slider {
+	width: 100%;
+}
 #toolbar, #playback-controls {
 	display: flex;
-}
-#toolbar fieldset {
 	border: 0px;
 	outline: 0px;
 	padding: 0px;
+	margin: 0px;
+	background: white;
+	box-shadow: 0px 0px 2px;
 }
 #toolbar input, #toolbar button, #playback-controls button, #playback-controls input {
+	font-size: 85%;
 	border-radius: 0px;
-	outline: none;
-	border: 1px solid rgba(95, 95, 95, 0.5);
-	color: white;
-	background-color: rgba(135, 135, 135, 0.10);
-	font-family: monospace;
-	padding: 0.2rem;
-	margin: 0px;
+	background-color: transparent;
+	border: 0px;
+	color: #111;
+}
+#toolbar .pure-button:hover, #toolbar .pure-button:focus {
+	background: #fbfbfb;
+}
+.alpg-branding {
+	background-color: transparent;
 }
 #playback-controls {
 	justify-content: center;
 }
+.pure-button {
+	border-radius: 0px;
+}
+.button-secondary {
+	color: white;
+	background: rgb(66, 184, 221); /* this is a light blue */
+}
+.button-success {
+	background: rgb(28, 184, 65); /* this is a green */
+	color: white;
+}
+.button-warning {
+	background: rgb(223, 117, 20); /* this is an orange */
+	color: white;
+}
 #view {
 	flex-grow: 1;
-	background-color: #999;
+	border: 1px solid #ccc;
+	border-width: 1px 0px;
 	padding: 1rem;
 }
 #view.unloaded {
@@ -160,9 +185,3 @@ body {
 #logs pre.app-log-container pre.app-log {
 	display: inline;
 }
-.branding-link {
-	color: white;
-	font-family: monospace;
-	padding: 0.2rem;
-}
-
