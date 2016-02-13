@@ -1,14 +1,14 @@
 function transactionable(o, clone) {
 	const states = [];
 	let pointer = 0;
-	const listeners = new Set();
+	let transactionListener;
 
 	function transact() {
 		let newState = clone(o);
 		states.push(newState);
-		listeners.forEach(function (listener) {
-			setTimeout(listener, 0, newState, states);
-		});
+		if (transactionListener) {
+			setTimeout(listener, 0, states.length);
+		}
 		return o;
 	}
 
@@ -46,8 +46,15 @@ function transactionable(o, clone) {
 		},
 		set pointer(val) {
 			// TODO: see if we can read this better?
-			pointer = clampPointer(pointer - val);
+			if (Number(val)) {
+				pointer = +val;
+				pointer = clampPointer();
+			}
 			return pointer;
+		},
+		onTransact(fn) {
+			transactionListener = fn;
+			setTimeout(fn, 0, states.length);
 		}
 	};
 

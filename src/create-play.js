@@ -14,6 +14,8 @@ function createPlay({algo, render, initialState, clone},  parent) {
 	const state = transactionable(initialState, clone);
 	const board = createBoard(render);
 
+	let pointerListener;
+
 	let playId;
 
 	return {
@@ -21,14 +23,18 @@ function createPlay({algo, render, initialState, clone},  parent) {
 		run() {
 			algo(initialState, state.transact);
 			board.render(state.current(), parent);
+
+			pointerListener && pointerListener(state.pointer);
 		},
 		play({playspeed: time}) {
 			clearInterval(playId);
 			board.update(state.next());
+			pointerListener && pointerListener(state.pointer);
 
 			playId = setInterval(function () {
 				board.update(state.next());
-			}, time);
+				pointerListener && pointerListener(state.pointer);
+			}, time || 20);
 
 			return state.current();
 		},
@@ -44,6 +50,7 @@ function createPlay({algo, render, initialState, clone},  parent) {
 
 			const nextState = state.next();
 			board.update(nextState);
+			pointerListener && pointerListener(state.pointer);
 			return nextState;
 		},
 		previous() {
@@ -52,19 +59,42 @@ function createPlay({algo, render, initialState, clone},  parent) {
 
 			const prevState = state.previous();
 			board.update(prevState);
+
+			pointerListener && pointerListener(state.pointer);
 			return prevState;
 		},
 		rewind({playspeed: time}) {
 			clearInterval(playId);
 			board.update(state.previous());
+			pointerListener && pointerListener(state.pointer);
 
 			playId = setInterval(function () {
 				board.update(state.previous());
-			}, time);
+				pointerListener && pointerListener(state.pointer);
+			}, time || 20);
 
 			return state.current();
 		},
-		board
+		togglePlayState(settings) {
+			if (playId) {
+				this.pause(settings);
+			} else {
+				this.play(settings);
+			}
+		},
+		seek({seekValue}) {
+			state.pointer = Number(seekValue) || 0;
+			board.update(state.current());
+		},
+		onPointerChange(fn) {
+			if (typeof fn === 'function') {
+				pointerListener = fn;
+			} else {
+				console.error('Non-callable passed to Play.onPointerChange');
+			}
+		},
+		board,
+		state
 	};
 }
 

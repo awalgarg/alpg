@@ -232,6 +232,9 @@ function init() {
 					const url = `${location.origin}${location.pathname}?gist=${resp.id}`;
 					logger.info(`Algorithm saved. Permalink: ${url}`);
 					dom.control.toolbar.permalink.value = url;
+					try {
+						dom.control.toolbar.permalink.select();
+					} catch (err) {}
 					window.history.pushState({}, '', url);
 					setEditState(true);
 					loadIndicator.clear();
@@ -272,6 +275,12 @@ function init() {
 			unloadAlgorithm();
 			currentControl = player(algo, dom.view);
 			currentControl.run();
+			currentControl.state.onTransact(function transactListener(newLength) {
+				dom.playback.slider.max = newLength - 1;
+			});
+			currentControl.onPointerChange(function (newVal) {
+				dom.playback.slider.value = newVal;
+			});
 			dom.view.classList.remove('unloaded');
 			dom.view.classList.add('loaded');
 		}
@@ -314,9 +323,19 @@ function init() {
 			});
 		});
 
+		dom.playback.slider.addEventListener('input', onSliderChange);
+		dom.playback.slider.addEventListener('change', onSliderChange);
+
+		function onSliderChange() {
+			if (!currentControl) return;
+			currentControl.pause(getSettings());
+			currentControl.seek({seekValue: Number(this.value)});
+		}
+
 		const KEY_ENTER = 13;
 		const KEY_ARROW_LEFT = 37;
 		const KEY_ARROW_RIGHT = 39;
+		const KEY_SPACE = 32;
 
 		document.addEventListener('keydown', function (ev) {
 			// I agree this is not the best keyboard handler
@@ -337,6 +356,11 @@ function init() {
 			if (ev.which === KEY_ARROW_RIGHT && currentControl && (ev.target.contains(dom.view) || dom.view.contains(ev.target))) {
 				ev.preventDefault();
 				currentControl.next(getSettings());
+				return;
+			}
+			if (ev.which === KEY_SPACE && currentControl && (ev.target.contains(dom.view) || dom.view.contains(ev.target))) {
+				ev.preventDefault();
+				currentControl.togglePlayState(getSettings());
 				return;
 			}
 		});
