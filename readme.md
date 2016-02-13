@@ -1,7 +1,7 @@
 # alpg
 
 alpg is an in-browser algorithm playground to visualize your own custom algorithms and share them with others. it features a time-travelling inspector and hot-swapping view mechanism.
-See an example with bubble sort at http://awal.js.org/alpg/?gist=1623086148080a297155
+See an example with bubble sort at http://awal.js.org/alpg/?gist=8b5c6679edc3b85106fb
 
 ## How
 
