@@ -112,23 +112,19 @@ body {
 	padding: 1rem;
 }
 #view.unloaded {
-	font-family: monospace;
 	text-align: center;
 }
 #view.unloaded:before {
-	content: "Algo view is rendered here. This text here with a dull grey background means no algo is loaded. Select one, or write your own. Playback controls are disabled while no algo is loaded. Happy playing with algorithms!";
+	content: "No algorithm loaded. Why not write one now!";
 }
 #view.loaded {
 	background-color: white;
-}
-#algo-active-name {
-	font-family: monospace;
-	color: white;
 }
 #logs {
 	min-height: 20%;
 	max-height: 100px;
 	background-color: #fff;
+	border-top: 1px solid #ccc;
 	font-family: monospace;
 	padding: 0.1rem;
 	white-space: pre;
@@ -138,26 +134,12 @@ body {
 	margin: 0;
 }
 #logs > pre.app-log-container {
-	font-size: 120%;
+	font-size: 70%;
 	display: flex;
-}
-#logs > pre.app-log-container.log {
-	background-color: #fff;
-}
-#logs > pre.app-log-container.error {
-	background-color: #f58eae;
-}
-#logs > pre.app-log-container.warning {
-	background-color: #ffdb99;
-}
-#logs > pre.app-log-container.debug {
-	background-color: #e6e6e6;
-}
-#logs > pre.app-log-container.info {
-	background-color: #cacaff;
 }
 #logs pre.log-timestamp {
 	display: inline;
+	color: grey;
 }
 #logs pre.app-log-container pre.log-timestamp:after {
 	content: " ";
