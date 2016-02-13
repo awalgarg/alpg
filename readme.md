@@ -1,25 +1,13 @@
 # alpg
 
-alpg is an in-browser algorithm playground to visualize algorithms. it features a time-travelling inspector and hot-swapping view mechanism.
-See an example with bubble sort at http://awal.js.org/alpg/?gist=1623086148080a297155.
+alpg is an in-browser algorithm playground to visualize your own custom algorithms and share them with others. it features a time-travelling inspector and hot-swapping view mechanism.
+See an example with bubble sort at http://awal.js.org/alpg/?gist=1623086148080a297155
 
-## how
-the algorithm it intakes is basically a script implementing atleast two functions: `algo` and `render`.
+## How
 
-The `algo` function defines the runtime of the algorithm itself, and does computations on a state object passed to it. It calls a special function `transact` whenever an interesting state change occurs. This special function simply records the state at that point and stores it.
+Please read the [Getting Started](https://github.com/awalGarg/alpg/wiki/Writing-algorithms-for-the-app---%22Getting-Started%22) doc at the [wiki](https://github.com/awalGarg/alpg/wiki/).
 
-The `render` function is a pure function which gets a state object from one of the stored states, and returns a virtual DOM tree based on the [virtual-dom-hyperscript] function.
-
-this is pretty much all the magic. the app does the part of providing a UI to do all this and showing the rendered tree and playback controls to travel between the different states.
-
-I am not very good with algorithms, so I don't have many great examples right now. But if you make a cool one, please open a PR so I can include it here!
-
-[virtual-dom-hyperscript]: https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript#virtual-hyperscript
-
-## More documentation?
-If you are a JS developer, the [example](http://awal.js.org/alpg/?gist=1623086148080a297155) above shall get you started very easily.
-
-Meanwhile, I am working on "real" docs as well!
+If you are a JS developer familiar with function programming (and optionally virtual-dom) already, it would be very easy to understand what's happening just by looking at the example above.
 
 ## features
 
@@ -28,6 +16,7 @@ Meanwhile, I am working on "real" docs as well!
 - sharing algorithms
 	- this uses http://gist.github.com for saving
 - swapping the renderer while the algorithm is running!
+- media player style playback of rendered states
 - custom logger (use the `logger` object in your algorithm code)
 
 ## why not provide awesome feature X as well?
@@ -40,6 +29,7 @@ Feel free to open an issue. If anyone can come up with a way to provide drastic 
 - `Ctrl+Enter` resets state and runs the algorithm from start
 - `Left Arrow` switch to previous frame
 - `Right Arrow` switch to next frame
+- `Spacebar` toggle automatic play
 
 ## Author
 Awal Garg
